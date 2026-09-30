@@ -1,0 +1,142 @@
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 4rem 5%;
+}
+
+.auth-panel {
+  display: flex;
+  justify-content: center;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.auth-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.auth-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: rgba(239, 68, 68, 0.12);
+  display: grid;
+  place-items: center;
+  color: var(--color-danger);
+}
+
+.host-icon {
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.auth-head h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.auth-head p {
+  margin: 0.5rem 0 0;
+  color: var(--text-muted);
+}
+
+.auth-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.auth-form label {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+}
+
+.auth-submit {
+  width: fit-content;
+  padding: 0.95rem 1.8rem;
+}
+
+.auth-support {
+  display: grid;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.auth-support div {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-muted);
+}
+
+.auth-switch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.auth-switch p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.auth-features {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-card h2 {
+  margin-bottom: 1rem;
+}
+
+.feature-card ul {
+  list-style: none;
+  display: grid;
+  gap: 0.85rem;
+  padding-left: 0;
+}
+
+.feature-card li {
+  position: relative;
+  padding-left: 1.75rem;
+  line-height: 1.6;
+}
+
+.feature-card li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-danger);
+}
+
+@media (max-width: 992px) {
+  .auth-page {
+    grid-template-columns: 1fr;
+    padding: 2rem 2rem;
+  }
+}

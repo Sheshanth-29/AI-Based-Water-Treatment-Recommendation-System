@@ -1,0 +1,166 @@
+.results-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.5rem;
+}
+
+.score-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 3rem 2rem !important;
+  text-align: center;
+}
+
+.score-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 8px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-color);
+}
+
+.score-value {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.score-label {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-weight: 600;
+}
+
+.confidence {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.reasoning-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.reasoning-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-primary-500);
+}
+
+.reasoning-card p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.params-recap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.param-chip {
+  padding: 0.5rem 1rem;
+  background: rgba(14, 165, 233, 0.1);
+  color: var(--color-primary-600);
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.treatment-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.flow-step {
+  width: 100%;
+  max-width: 400px;
+}
+
+.step-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 2rem !important;
+  justify-content: center;
+}
+
+.flow-step.start .step-card {
+  background: rgba(14, 165, 233, 0.05);
+  border-style: dashed;
+}
+
+.flow-step.end .step-card {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.2));
+  border-color: rgba(16, 185, 129, 0.3);
+  color: var(--color-success);
+}
+
+.flow-step.end .step-icon {
+  color: var(--color-success);
+}
+
+.step-icon {
+  color: var(--color-primary-500);
+}
+
+.step-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.flow-arrow {
+  color: var(--text-muted);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+}

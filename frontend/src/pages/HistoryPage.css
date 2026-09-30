@@ -1,0 +1,148 @@
+.history-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.table-card {
+  padding: 2rem !important;
+  overflow: hidden;
+}
+
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 0.5rem 1rem;
+  width: 100%;
+  max-width: 400px;
+  transition: all 0.3s ease;
+}
+
+[data-theme='dark'] .search-bar {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.search-bar:focus-within {
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+}
+
+.search-icon {
+  color: var(--text-muted);
+  margin-right: 0.75rem;
+}
+
+.search-bar input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.icon-btn-text {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.modern-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.modern-table th {
+  padding: 1rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--glass-border);
+}
+
+.modern-table td {
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid var(--glass-border);
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+.modern-table tr:last-child td {
+  border-bottom: none;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.score-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.score-bar {
+  height: 6px;
+  border-radius: 3px;
+  min-width: 100px;
+}
+
+.status-chip {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.view-btn {
+  color: var(--color-primary-500);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
+}
+
+.view-btn:hover {
+  color: var(--color-cyan-500);
+  text-decoration: underline;
+}
+
+.no-data {
+  text-align: center;
+  padding: 3rem !important;
+  color: var(--text-muted) !important;
+}
+
+@media (max-width: 768px) {
+  .table-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .search-bar {
+    max-width: none;
+  }
+}
