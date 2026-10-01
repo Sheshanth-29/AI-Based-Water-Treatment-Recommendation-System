@@ -59,6 +59,33 @@
 
 @media (max-width: 768px) {
   .sidebar {
+    top: auto;
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    width: auto;
+    flex-direction: row;
+    padding: 0.5rem;
+  }
+
+  .sidebar-logo {
     display: none;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    gap: 0.25rem;
+  }
+
+  .nav-item {
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.25rem;
+    font-size: 0.65rem;
+    text-align: center;
   }
 }
