@@ -40,57 +40,56 @@ const WaterAnalysis = () => {
     try {
 
       const response = await fetch(
-        'http://127.0.0.1:5000/predict',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
+        `${import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000'}/predict`,
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+      },
 
-          body: JSON.stringify({
+        body: JSON.stringify({
 
-            pH: Number(formData.pH),
+          pH: Number(formData.pH),
 
-            turbidity: Number(formData.turbidity),
+          turbidity: Number(formData.turbidity),
 
-            hardness: Number(formData.hardness),
+          hardness: Number(formData.hardness),
 
-            tds: Number(formData.tds),
+          tds: Number(formData.tds),
 
-            microbialRisk: formData.microbialRisk
-            ,
-            purpose: formData.purpose
+          microbialRisk: formData.microbialRisk
+          ,
+          purpose: formData.purpose
 
-          })
+        })
         }
       );
 
 
-      if (!response.ok) {
+if (!response.ok) {
 
-        throw new Error(
-          "Backend prediction failed"
-        );
+  throw new Error(
+    "Backend prediction failed"
+  );
 
-      }
-
-
-      const result = await response.json();
+}
 
 
-      setIsScanning(false);
+const result = await response.json();
 
 
-      navigate('/results',
-        {
-          state:
-          {
-            data: formData,
+setIsScanning(false);
 
-            apiResult: result
-          }
-        }
-      );
+
+navigate('/results',
+  {
+    state:
+    {
+      data: formData,
+
+      apiResult: result
+    }
+  }
+);
 
 
     }
@@ -98,64 +97,64 @@ const WaterAnalysis = () => {
 
     catch (error) {
 
-      console.error(
-        "Backend connection error:",
-        error
-      );
+  console.error(
+    "Backend connection error:",
+    error
+  );
 
 
-      setIsScanning(false);
+  setIsScanning(false);
 
 
-      alert(
-        "AI Backend is not running. Please start Flask server."
-      );
+  alert(
+    "AI Backend is not running. Please start Flask server."
+  );
 
-    }
+}
 
   };
 
 
 
-  return (
+return (
 
-    <div className="water-analysis page-transition">
+  <div className="water-analysis page-transition">
 
-      <header className="page-header">
+    <header className="page-header">
 
-        <h1 className="page-title">
-          Water Analysis
-        </h1>
+      <h1 className="page-title">
+        Water Analysis
+      </h1>
 
-        <p className="page-subtitle">
-          Enter water parameters to get an AI-powered treatment recommendation.
-        </p>
+      <p className="page-subtitle">
+        Enter water parameters to get an AI-powered treatment recommendation.
+      </p>
 
-      </header>
-
-
-
-      <div className="analysis-content">
+    </header>
 
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 20
-          }}
 
-          animate={{
-            opacity: 1,
-            y: 0
-          }}
-        >
+    <div className="analysis-content">
 
 
-          <GlassCard className="analysis-card">
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 20
+        }}
+
+        animate={{
+          opacity: 1,
+          y: 0
+        }}
+      >
 
 
-            {
-              isScanning ?
+        <GlassCard className="analysis-card">
+
+
+          {
+            isScanning ?
 
               (
 
@@ -414,21 +413,21 @@ const WaterAnalysis = () => {
 
               )
 
-            }
+          }
 
 
-          </GlassCard>
+        </GlassCard>
 
 
-        </motion.div>
-
-
-      </div>
+      </motion.div>
 
 
     </div>
 
-  );
+
+  </div>
+
+);
 
 };
 
