@@ -41,55 +41,56 @@ const WaterAnalysis = () => {
 
       const response = await fetch(
         `${import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000'}/predict`,
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
-      },
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
 
-        body: JSON.stringify({
+          body: JSON.stringify({
 
-          pH: Number(formData.pH),
+            pH: Number(formData.pH),
 
-          turbidity: Number(formData.turbidity),
+            turbidity: Number(formData.turbidity),
 
-          hardness: Number(formData.hardness),
+            hardness: Number(formData.hardness),
 
-          tds: Number(formData.tds),
+            tds: Number(formData.tds),
 
-          microbialRisk: formData.microbialRisk
-          ,
-          purpose: formData.purpose
+            microbialRisk: formData.microbialRisk
+            ,
+            purpose: formData.purpose
 
-        })
+          })
         }
       );
 
 
-if (!response.ok) {
+      if (!response.ok) {
 
-  throw new Error(
-    "Backend prediction failed"
-  );
+        throw new Error(
+          "Backend prediction failed"
+        );
 
-}
-
-
-const result = await response.json();
+      }
 
 
-setIsScanning(false);
+      const result = await response.json();
 
 
-navigate('/results',
-  {
-    state:
-    {
-      data: formData,
+      setIsScanning(false);
 
-      apiResult: result
-    }
-  }
-);
+
+      navigate('/results',
+        {
+          state:
+          {
+            data: formData,
+
+            apiResult: result
+          }
+        }
+      );
 
 
     }
@@ -97,337 +98,337 @@ navigate('/results',
 
     catch (error) {
 
-  console.error(
-    "Backend connection error:",
-    error
-  );
+      console.error(
+        "Backend connection error:",
+        error
+      );
 
 
-  setIsScanning(false);
+      setIsScanning(false);
 
 
-  alert(
-    "AI Backend is not running. Please start Flask server."
-  );
+      alert(
+        "Could not reach the AI backend. It may be waking up, so please wait a few seconds and try again."
+      );
 
-}
+    }
 
   };
 
 
 
-return (
+  return (
 
-  <div className="water-analysis page-transition">
+    <div className="water-analysis page-transition">
 
-    <header className="page-header">
+      <header className="page-header">
 
-      <h1 className="page-title">
-        Water Analysis
-      </h1>
+        <h1 className="page-title">
+          Water Analysis
+        </h1>
 
-      <p className="page-subtitle">
-        Enter water parameters to get an AI-powered treatment recommendation.
-      </p>
+        <p className="page-subtitle">
+          Enter water parameters to get an AI-powered treatment recommendation.
+        </p>
 
-    </header>
-
-
-
-    <div className="analysis-content">
+      </header>
 
 
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 20
-        }}
 
-        animate={{
-          opacity: 1,
-          y: 0
-        }}
-      >
+      <div className="analysis-content">
 
 
-        <GlassCard className="analysis-card">
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 20
+          }}
+
+          animate={{
+            opacity: 1,
+            y: 0
+          }}
+        >
 
 
-          {
-            isScanning ?
-
-              (
-
-                <div className="scanning-container">
+          <GlassCard className="analysis-card">
 
 
-                  <div className="scanner">
+            {
+              isScanning ?
 
-                    <div className="scanner-line"></div>
+                (
 
-                    <ScanLine
-                      size={64}
-                      className="scanner-icon"
-                    />
+                  <div className="scanning-container">
+
+
+                    <div className="scanner">
+
+                      <div className="scanner-line"></div>
+
+                      <ScanLine
+                        size={64}
+                        className="scanner-icon"
+                      />
+
+                    </div>
+
+
+                    <h3>
+                      AI is analyzing your water sample...
+                    </h3>
+
+
+                    <p>
+                      Evaluating parameters through the Random Forest model.
+                    </p>
+
 
                   </div>
 
-
-                  <h3>
-                    AI is analyzing your water sample...
-                  </h3>
+                )
 
 
-                  <p>
-                    Evaluating parameters through the Random Forest model.
-                  </p>
+                :
+
+                (
+
+                  <form
+                    onSubmit={handleAnalyze}
+                    className="analysis-form"
+                  >
 
 
-                </div>
-
-              )
+                    <div className="form-grid">
 
 
-              :
+                      <div className="input-group">
 
-              (
-
-                <form
-                  onSubmit={handleAnalyze}
-                  className="analysis-form"
-                >
+                        <label>
+                          pH Level
+                        </label>
 
 
-                  <div className="form-grid">
+                        <input
+
+                          type="number"
+
+                          step="0.1"
+
+                          name="pH"
+
+                          placeholder="e.g. 7.2"
+
+                          required
+
+                          value={formData.pH}
+
+                          onChange={handleChange}
+
+                        />
+
+                      </div>
 
 
-                    <div className="input-group">
-
-                      <label>
-                        pH Level
-                      </label>
 
 
-                      <input
+                      <div className="input-group">
 
-                        type="number"
+                        <label>
+                          Turbidity (NTU)
+                        </label>
 
-                        step="0.1"
 
-                        name="pH"
+                        <input
 
-                        placeholder="e.g. 7.2"
+                          type="number"
 
-                        required
+                          step="0.1"
 
-                        value={formData.pH}
+                          name="turbidity"
 
-                        onChange={handleChange}
+                          placeholder="e.g. 3.5"
 
-                      />
+                          required
+
+                          value={formData.turbidity}
+
+                          onChange={handleChange}
+
+                        />
+
+                      </div>
+
+
+
+
+                      <div className="input-group">
+
+                        <label>
+                          Hardness (mg/L)
+                        </label>
+
+
+                        <input
+
+                          type="number"
+
+                          name="hardness"
+
+                          placeholder="e.g. 120"
+
+                          required
+
+                          value={formData.hardness}
+
+                          onChange={handleChange}
+
+                        />
+
+                      </div>
+
+
+
+
+                      <div className="input-group">
+
+                        <label>
+                          TDS (ppm)
+                        </label>
+
+
+                        <input
+
+                          type="number"
+
+                          name="tds"
+
+                          placeholder="e.g. 300"
+
+                          required
+
+                          value={formData.tds}
+
+                          onChange={handleChange}
+
+                        />
+
+                      </div>
+
+
+
+
+                      <div className="input-group full-width">
+
+                        <label>
+                          Microbial Risk
+                        </label>
+
+
+                        <select
+
+                          name="microbialRisk"
+
+                          value={formData.microbialRisk}
+
+                          onChange={handleChange}
+
+                        >
+
+                          <option value="Low">
+                            Low
+                          </option>
+
+
+                          <option value="Medium">
+                            Medium
+                          </option>
+
+
+                          <option value="High">
+                            High
+                          </option>
+
+
+                        </select>
+
+
+                      </div>
+
+
+                      <div className="input-group full-width">
+
+                        <label>
+                          Purpose
+                        </label>
+
+                        <select
+
+                          name="purpose"
+
+                          value={formData.purpose}
+
+                          onChange={handleChange}
+
+                        >
+
+                          <option value="Drinking Water">Drinking Water</option>
+
+                          <option value="Irrigation">Irrigation</option>
+
+                          <option value="Industrial Use">Industrial Use</option>
+
+                          <option value="Domestic Use">Domestic Use</option>
+
+                        </select>
+
+
+                      </div>
+
 
                     </div>
 
 
 
 
-                    <div className="input-group">
-
-                      <label>
-                        Turbidity (NTU)
-                      </label>
+                    <div className="form-actions">
 
 
-                      <input
-
-                        type="number"
-
-                        step="0.1"
-
-                        name="turbidity"
-
-                        placeholder="e.g. 3.5"
-
-                        required
-
-                        value={formData.turbidity}
-
-                        onChange={handleChange}
-
-                      />
-
-                    </div>
-
-
-
-
-                    <div className="input-group">
-
-                      <label>
-                        Hardness (mg/L)
-                      </label>
-
-
-                      <input
-
-                        type="number"
-
-                        name="hardness"
-
-                        placeholder="e.g. 120"
-
-                        required
-
-                        value={formData.hardness}
-
-                        onChange={handleChange}
-
-                      />
-
-                    </div>
-
-
-
-
-                    <div className="input-group">
-
-                      <label>
-                        TDS (ppm)
-                      </label>
-
-
-                      <input
-
-                        type="number"
-
-                        name="tds"
-
-                        placeholder="e.g. 300"
-
-                        required
-
-                        value={formData.tds}
-
-                        onChange={handleChange}
-
-                      />
-
-                    </div>
-
-
-
-
-                    <div className="input-group full-width">
-
-                      <label>
-                        Microbial Risk
-                      </label>
-
-
-                      <select
-
-                        name="microbialRisk"
-
-                        value={formData.microbialRisk}
-
-                        onChange={handleChange}
-
+                      <AnimatedButton
+                        type="submit"
+                        className="analyze-btn"
                       >
 
-                        <option value="Low">
-                          Low
-                        </option>
+                        <Activity size={20} />
 
+                        Analyze Water
 
-                        <option value="Medium">
-                          Medium
-                        </option>
-
-
-                        <option value="High">
-                          High
-                        </option>
-
-
-                      </select>
+                      </AnimatedButton>
 
 
                     </div>
 
 
-                    <div className="input-group full-width">
 
-                      <label>
-                        Purpose
-                      </label>
+                  </form>
 
-                      <select
+                )
 
-                        name="purpose"
-
-                        value={formData.purpose}
-
-                        onChange={handleChange}
-
-                      >
-
-                        <option value="Drinking Water">Drinking Water</option>
-
-                        <option value="Irrigation">Irrigation</option>
-
-                        <option value="Industrial Use">Industrial Use</option>
-
-                        <option value="Domestic Use">Domestic Use</option>
-
-                      </select>
+            }
 
 
-                    </div>
+          </GlassCard>
 
 
-                  </div>
+        </motion.div>
 
 
-
-
-                  <div className="form-actions">
-
-
-                    <AnimatedButton
-                      type="submit"
-                      className="analyze-btn"
-                    >
-
-                      <Activity size={20} />
-
-                      Analyze Water
-
-                    </AnimatedButton>
-
-
-                  </div>
-
-
-
-                </form>
-
-              )
-
-          }
-
-
-        </GlassCard>
-
-
-      </motion.div>
+      </div>
 
 
     </div>
 
-
-  </div>
-
-);
+  );
 
 };
 
