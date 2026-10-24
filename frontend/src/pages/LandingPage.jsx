@@ -18,9 +18,14 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <header className="landing-header">
-        <div className="landing-logo">
+        <div className="landing-logo" onClick={() => navigate('/')}>
           <Droplets className="logo-icon" size={32} />
           <span className="logo-text text-gradient">AquaAI</span>
+        </div>
+        <div className="landing-nav-actions">
+          <AnimatedButton onClick={() => navigate('/login')} variant="secondary" className="landing-nav-btn">
+            Sign In / Access
+          </AnimatedButton>
         </div>
       </header>
       

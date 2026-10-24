@@ -1,11 +1,12 @@
 .history-page {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
+  width: 100%;
 }
 
 .table-card {
-  padding: 2rem !important;
+  padding: 1.75rem !important;
   overflow: hidden;
 }
 
@@ -13,7 +14,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   flex-wrap: wrap;
   gap: 1rem;
 }
@@ -24,9 +25,9 @@
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 380px;
   transition: all 0.3s ease;
 }
 
@@ -42,6 +43,7 @@
 .search-icon {
   color: var(--text-muted);
   margin-right: 0.75rem;
+  flex-shrink: 0;
 }
 
 .search-bar input {
@@ -51,44 +53,51 @@
   width: 100%;
   color: var(--text-color);
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 1rem; /* 16px to prevent iOS auto-zoom */
 }
 
 .toolbar-actions {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .icon-btn-text {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
+  padding: 0.6rem 1rem !important;
+  font-size: 0.85rem !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .table-container {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  border-radius: var(--radius-md);
 }
 
 .modern-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  min-width: 580px;
 }
 
 .modern-table th {
-  padding: 1rem;
+  padding: 0.85rem 1rem;
   color: var(--text-muted);
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   border-bottom: 2px solid var(--glass-border);
 }
 
 .modern-table td {
-  padding: 1.25rem 1rem;
+  padding: 1rem;
   border-bottom: 1px solid var(--glass-border);
   color: var(--text-color);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .modern-table tr:last-child td {
@@ -102,28 +111,30 @@
 .score-bar-container {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .score-bar {
   height: 6px;
   border-radius: 3px;
-  min-width: 100px;
+  min-width: 80px;
 }
 
 .status-chip {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.65rem;
   border-radius: 2rem;
-  font-size: 0.875rem;
+  font-size: 0.78rem;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .view-btn {
   color: var(--color-primary-500);
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
 .view-btn:hover {
@@ -133,16 +144,32 @@
 
 .no-data {
   text-align: center;
-  padding: 3rem !important;
+  padding: 2.5rem !important;
   color: var(--text-muted) !important;
 }
 
 @media (max-width: 768px) {
+  .table-card {
+    padding: 1.25rem 0.9rem !important;
+  }
+
   .table-toolbar {
     flex-direction: column;
     align-items: stretch;
+    gap: 0.75rem;
   }
+
   .search-bar {
     max-width: none;
+  }
+
+  .toolbar-actions {
+    width: 100%;
+    display: flex;
+  }
+
+  .toolbar-actions button {
+    flex: 1;
+    justify-content: center;
   }
 }
