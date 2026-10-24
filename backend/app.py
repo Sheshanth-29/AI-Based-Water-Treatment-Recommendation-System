@@ -223,7 +223,7 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
 
     print(
-        f"[Server] Water Treatment Recommendation Backend API running on http://127.0.0.1:{port}"
+        f"🚀 Water Treatment Recommendation Backend API running on http://127.0.0.1:{port}"
     )
 
     app.run(
